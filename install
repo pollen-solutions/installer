@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# Ensure that Docker is running...
+if [ $? -ne 0 ]; then
+    echo "Docker is not running."
+
+    exit 1
+fi
+
+name=$1
+if [ -z "$name" ]; then
+ echo "The name of app to install is required e.g \"install app-example\""
+ exit 1
+fi
+
+docker run --rm -v "$(pwd)":/opt -w /app -it pollen-solutions/installer:latest bash -c "bin/pollen new ${name} -f && cp -r ${name} /opt"
+
+sudo chown -R $(id -un):$(id -gn) ${name}
+cd ${name}
+bin/app.build
