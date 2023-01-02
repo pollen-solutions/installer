@@ -15,13 +15,10 @@ COPY --from=composer /usr/bin/composer /usr/local/bin/composer
 
 RUN composer global require pollen-solutions/installer:dev-main
 
-RUN echo "PATH=~/.composer/vendor/bin/:\$PATH" >> ~/.bashrc
-RUN . ~/.bashrc
-
-#RUN cd ~ && ls -laht
-#RUN ln -s ~/.composer/vendor/bin/pollen /usr/local/bin/pollen
-
 USER root
+
+RUN ln -s /home/pollen/.composer/vendor/bin/pollen /usr/local/bin/pollen
+
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint
 
 ENTRYPOINT ["docker-entrypoint"]
