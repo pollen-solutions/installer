@@ -1,0 +1,7 @@
+## HIDDEN FILES
+.DS_Store
+
+## PACKAGE MANAGER
+### COMPOSER
+/vendor/
+composer.lock
