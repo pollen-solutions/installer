@@ -13,8 +13,7 @@ if [ -z "$name" ]; then
  exit 1
 fi
 
-#docker run --rm -u $(id -u ${USER}):$(id -g ${USER}) -v "$(pwd)":/opt -w /opt -it pollen-solutions/installer:latest bash -c "pollen new ${name}"
-docker run --rm -v "$(pwd)":/opt -w /opt -it pollen-solutions/installer:latest $(id -u ${USER}) bash -c "/home/pollen/.composer/vendor/bin/pollen new ${name}"
+docker run --rm -v "$(pwd)":/opt -w /opt -it pollen-solutions/installer:latest $(id -u ${USER}) bash -c "pollen new ${name}"
 
 cd ${name}
-bin/bigfish
+bin/bigfish up
